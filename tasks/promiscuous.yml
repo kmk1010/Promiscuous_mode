@@ -1,0 +1,19 @@
+---
+- name: To enable promiscous
+  copy:
+    src: /home/vagrant/promisc.service
+    dest: /etc/systemd/system/promisc.service
+
+- name: to enable service
+  service:
+    name: promisc
+    enabled: true
+    state: started
+
+- name: to check 
+  command: ip addr
+  register: ipaddr
+
+- debug:
+    var: ipaddr 
+  
